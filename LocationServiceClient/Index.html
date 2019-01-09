@@ -1,0 +1,26 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body ng-app="locationApp" ng-controller="locationController">
+    <button ng-click="logout()" ng-show="userInfo.isAuthenticated">Logout</button>
+    <button ng-click="login()" ng-hide="userInfo.isAuthenticated">Login</button>
+    <br />
+    <pre>
+       Autheticated as ... {{userInfo}}
+    </pre>
+    <br />
+    <button ng-click="getLocation()">Get Location</button>
+    <br />
+    Latitude: {{city.Latitude}} <br />
+    Longitude: {{city.Longitude}}<br />
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0/angular.js"></script>
+    <script src="https://secure.aadcdn.microsoftonline-p.com/lib/1.0.0/js/adal.min.js"></script>
+    <script src="https://secure.aadcdn.microsoftonline-p.com/lib/1.0.0/js/adal-angular.min.js"></script>
+    <script src="Scripts/app.js"></script>
+</body>
+</html>

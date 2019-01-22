@@ -17,10 +17,10 @@ namespace LocationServiceClientWeb.App_Start
     public class Startup
     {
         private static string clientId = ConfigurationManager.AppSettings["ida:ClientId"];
-        private static string appKey = ConfigurationManager.AppSettings["ida:appKey"];
-        private static string aadInstance = ConfigurationManager.AppSettings["ida:aadInstance"];
-        private static string tenant = ConfigurationManager.AppSettings["ida:tenant"];
-        private static string postLogoutRedirectUri = ConfigurationManager.AppSettings["ida:postLogoutRedirectUri"];
+        private static string appKey = ConfigurationManager.AppSettings["ida:AppSecret"];
+        private static string aadInstance = ConfigurationManager.AppSettings["ida:AadInstance"];
+        private static string tenant = ConfigurationManager.AppSettings["ida:Tenant"];
+        private static string postLogoutRedirectUri = ConfigurationManager.AppSettings["ida:PostLogoutRedirectUrl"];
 
         private static string authority = String.Format(CultureInfo.InvariantCulture, aadInstance, tenant);
 

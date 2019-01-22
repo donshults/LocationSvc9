@@ -9,7 +9,7 @@ using System.Web.Http;
 using LocationSvc.Code;
 namespace LocationSvc.Controllers
 {
-    // [Authorize]
+    [Authorize]
     public class LocationController : ApiController
     {
         // https://localhost:44300/api/location?cityName=dc

@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocationSvcDaemon", "Locati
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocationServiceClient", "LocationServiceClient\LocationServiceClient.csproj", "{C5B0E555-8FAA-42D3-8A09-2B65C19C5083}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocationServiceClientWeb", "LocationServiceClientWeb\LocationServiceClientWeb.csproj", "{2A3311A0-89D8-40CF-A825-EBA90964737B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{C5B0E555-8FAA-42D3-8A09-2B65C19C5083}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C5B0E555-8FAA-42D3-8A09-2B65C19C5083}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C5B0E555-8FAA-42D3-8A09-2B65C19C5083}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2A3311A0-89D8-40CF-A825-EBA90964737B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A3311A0-89D8-40CF-A825-EBA90964737B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A3311A0-89D8-40CF-A825-EBA90964737B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A3311A0-89D8-40CF-A825-EBA90964737B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

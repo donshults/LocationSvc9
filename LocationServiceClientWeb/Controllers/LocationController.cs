@@ -3,12 +3,15 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Globalization;
+using System.IdentityModel.Tokens;
 using System.Linq;
 using System.Net.Http;
+using System.ServiceModel.Description;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using AuthenticationContext = Microsoft.IdentityModel.Clients.ActiveDirectory.AuthenticationContext;
 
 namespace LocationServiceClientWeb.Controllers
 {

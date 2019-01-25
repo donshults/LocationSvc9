@@ -10,25 +10,43 @@ using System.Web.Http;
 
 namespace LocationSvc.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class CalendarController : BaseApiController
     {
-        public CalendarController() : base()
+        //[System.Web.Http.Authorize]
+        [System.Web.Http.Route("api/calendar/timezones")]
+        public HttpResponseMessage GetTimeZones()
         {
-            string dumbName = null;
+            var results = TheCalendarSupport.GetTimeZoneInfo();
+            return Request.CreateResponse(HttpStatusCode.OK, results);
         }
 
-        public HttpResponseMessage Get(string siteUrl, string listName)
+        public HttpResponseMessage Get(string siteUrl, string listName, string localTimeZone)
         {
-            var results = TheCalendarSupport.GetCalendarItems(siteUrl, listName)
-                .ToList()
-                .Select(c => TheModelFactory.Create(c));
-            return Request.CreateResponse(HttpStatusCode.OK, results);
+            var results = TheCalendarSupport.GetCalendarItems(siteUrl, listName, localTimeZone);
+
+            if (results != null)
+            {
+                results.ToList().Select(c => TheModelFactory.Create(c));
+                return Request.CreateResponse(HttpStatusCode.OK, results);
+            }
+            else
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Can't find calendar list");
+            }
+
         }
-        public HttpResponseMessage Get(string siteUrl, string listName, int id)
+        public HttpResponseMessage Get(string siteUrl, string listName, int id, string localTimeZone)
         {
-            var results = TheModelFactory.Create(TheCalendarSupport.GetCalendarItemById(siteUrl, listName, id));
-            return Request.CreateResponse(HttpStatusCode.OK, results);
+            var results = TheModelFactory.Create(TheCalendarSupport.GetCalendarItemById(siteUrl, listName, id, localTimeZone));
+            if (results != null)
+            {
+                return Request.CreateResponse(HttpStatusCode.OK, results);
+            }
+            else
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Can't find calendar list");
+            }
         }
 
         public HttpResponseMessage Post([FromBody] CalendarItemModel model)
@@ -58,18 +76,18 @@ namespace LocationSvc.Controllers
             }
         }
 
-        public HttpResponseMessage Delete([FromBody] CalendarItemModel model)
+        public HttpResponseMessage Delete([FromBody] CalendarItemModel model, string localTimeZone)
         {
             try
             {
-                var exist = TheCalendarSupport.GetCalendarItemById(model.SiteUrl, model.ListName, model.ID);
+                var exist = TheCalendarSupport.GetCalendarItemById(model.SiteUrl, model.ListName, model.ID, localTimeZone);
                 var deleteRequest = false;
                 if (exist == null)
                 {
                     return Request.CreateResponse(HttpStatusCode.NotFound);
                 }
                 deleteRequest = TheCalendarSupport.DeleteCalendarItemById(model.SiteUrl, model.ListName, model.ID);
- 
+
                 if (deleteRequest)
                 {
                     return Request.CreateResponse(HttpStatusCode.OK);
@@ -91,13 +109,13 @@ namespace LocationSvc.Controllers
             try
             {
                 var entity = TheModelFactory.Parse(model);
-                if(entity == null)
+                if (entity == null)
                 {
                     return Request.CreateErrorResponse(HttpStatusCode.NotFound, "No Data to Post");
                 }
                 else
                 {
-                    var results = TheCalendarSupport.UpdateCalendarItem(model);
+                    var results = TheCalendarSupport.UpdateCalendarItem(entity);
                     if (results == null)
                     {
                         return Request.CreateErrorResponse(HttpStatusCode.NotFound, "No Data to Post");
@@ -114,4 +132,3 @@ namespace LocationSvc.Controllers
             }
         }
     }
-}
